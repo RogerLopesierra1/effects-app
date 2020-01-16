@@ -22,4 +22,13 @@ export class UsuarioService {
                );
   }
 
+  getByUser( id: string ) {
+    return this.http.get(`${ this.url }/users/${ id }`)
+               .pipe(
+                 map( resp => {
+                   return resp['data'];
+                 })
+               );
+  }
+
 }

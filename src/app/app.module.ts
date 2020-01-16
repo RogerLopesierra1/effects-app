@@ -6,6 +6,17 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 
+// NgRx
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { EffectsModule } from '@ngrx/effects';
+
+import { appReducers } from './store/app.reducer';
+import { affectsArr } from './store/effects/index';
+
+// enviroments
+import { environment } from '../environments/environment';
+
 // Rutas
 import { AppRoutingModule } from './app-routing.module';
 
@@ -21,6 +32,11 @@ import { UsuariosModule } from './usuarios/usuarios.module';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    StoreModule.forRoot( appReducers ),
+    EffectsModule.forRoot( affectsArr ),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production }),
     SharedModule,
     UsuariosModule
   ],
